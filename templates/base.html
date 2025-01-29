@@ -2,16 +2,17 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %} | CarZest</title>
     {% load static i18n %}
-    <!-- Örnek olarak Bootstrap CDN -->
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">{% trans "CarZest" %}</a>
+  <a class="navbar-brand" href="{% url 'home' %}">{% trans "CarZest" %}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" 
           data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
           aria-expanded="false" aria-label="Toggle navigation">
@@ -27,8 +28,8 @@
       {% if user.is_authenticated %}
         <li class="nav-item"><a class="nav-link" href="{% url 'vehicles' %}">{% trans "Vehicles" %}</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url 'signout' %}">{% trans "Logout" %}</a></li>
-        <li class="nav-item ml-2 text-white pt-2">
-          {% block welcome %}{% trans "Merhaba" %}, {{ user.username }}{% endblock %}
+        <li class="nav-item text-white ml-2 pt-2">
+          {% trans "Hello" %}, {{ user.username }}
         </li>
       {% else %}
         <li class="nav-item"><a class="nav-link" href="{% url 'signin' %}">{% trans "Login" %}</a></li>
@@ -36,12 +37,12 @@
       {% endif %}
     </ul>
 
-    <!-- Basit Dil Seçimi -->
+    <!-- Language Selector -->
     <form action="/i18n/setlang/" method="post" class="form-inline my-2 my-lg-0">
       {% csrf_token %}
       <select name="language" class="form-control mr-sm-2">
-        <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
-        <option value="tr" {% if LANGUAGE_CODE == 'tr' %}selected{% endif %}>Türkçe</option>
+        <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>{% trans "English" %}</option>
+        <option value="tr" {% if LANGUAGE_CODE == 'tr' %}selected{% endif %}>{% trans "Turkish" %}</option>
       </select>
       <button class="btn btn-outline-info my-2 my-sm-0" type="submit">{% trans "Change" %}</button>
     </form>

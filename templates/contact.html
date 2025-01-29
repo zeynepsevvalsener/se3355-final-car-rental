@@ -1,30 +1,37 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}Contact{% endblock %}
+{% block title %}{% trans "Contact" %}{% endblock %}
 
 {% block body %}
-{% include 'messages.html' %}
-
-<h2>{% trans "Contact Us" %}</h2>
-<form method="POST">
-  {% csrf_token %}
-  <div class="form-group">
-    <label>{% trans "Name" %}</label>
-    <input type="text" class="form-control" name="contactname" required>
-  </div>
-  <div class="form-group">
-    <label>{% trans "Phone Number" %}</label>
-    <input type="tel" class="form-control" name="contactnumber" required>
-  </div>
-  <div class="form-group">
-    <label>{% trans "Email" %}</label>
-    <input type="email" class="form-control" name="contactemail" required>
-  </div>
-  <div class="form-group">
-    <label>{% trans "Message" %}</label>
-    <textarea class="form-control" name="contactmsg" rows="4" required></textarea>
-  </div>
-  <button type="submit" class="btn btn-info">{% trans "Send" %}</button>
-</form>
-
+<div class="container my-4">
+  <h2 class="text-center mb-4">{% trans "Contact Us" %}</h2>
+  
+  {% include 'messages.html' %}
+  
+  <form method="POST" class="needs-validation" novalidate>
+    {% csrf_token %}
+    
+    <div class="form-group">
+      <label for="contactname">{% trans "Name" %}</label>
+      <input type="text" class="form-control" id="contactname" name="contactname" placeholder="{% trans 'Enter your name' %}" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="contactnumber">{% trans "Phone Number" %}</label>
+      <input type="tel" class="form-control" id="contactnumber" name="contactnumber" placeholder="{% trans 'Enter your phone number' %}" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="contactemail">{% trans "Email" %}</label>
+      <input type="email" class="form-control" id="contactemail" name="contactemail" placeholder="{% trans 'Enter your email address' %}" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="contactmsg">{% trans "Message" %}</label>
+      <textarea class="form-control" id="contactmsg" name="contactmsg" rows="4" placeholder="{% trans 'Write your message here...' %}" required></textarea>
+    </div>
+    
+    <button type="submit" class="btn btn-info btn-block">{% trans "Send" %}</button>
+  </form>
+</div>
 {% endblock %}

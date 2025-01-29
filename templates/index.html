@@ -1,53 +1,60 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}Home{% endblock %}
+{% block title %}{% trans "Home" %}{% endblock %}
 
 {% block body %}
 {% include 'messages.html' %}
 
-<h1 class="mb-3">{% trans "Welcome to CarZest" %}</h1>
+<div class="container mt-4">
+  <h1 class="text-center mb-3">{% trans "Welcome to CarZest" %}</h1>
+  <p class="text-center">{% trans "Rent cars easily with our system!" %}</p>
 
-<p>{% trans "Rent cars easily with our system!" %}</p>
+  <!-- Arama Formu -->
+  <form action="{% url 'search' %}" method="POST" class="mb-4">
+    {% csrf_token %}
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="office">{% trans "Office" %}</label>
+        <input type="text" class="form-control" name="office" placeholder="{% trans 'Enter office name' %}">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="date">{% trans "Date" %}</label>
+        <input type="date" class="form-control" name="date" required>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="time">{% trans "Time" %}</label>
+        <input type="time" class="form-control" name="time" required>
+      </div>
+      <div class="form-group col-md-2 d-flex align-items-end">
+        <button class="btn btn-primary w-100" type="submit">{% trans "Search" %}</button>
+      </div>
+    </div>
+  </form>
 
-<!-- Örnek arama formu (office/date/time) -->
-<form action="{% url 'search' %}" method="POST" class="mb-3">
-  {% csrf_token %}
-  <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="office">{% trans "Office" %}</label>
-      <input type="text" class="form-control" name="office" placeholder="{% trans 'Enter office name' %}">
-    </div>
-    <div class="form-group col-md-3">
-      <label for="date">{% trans "Date" %}</label>
-      <input type="date" class="form-control" name="date">
-    </div>
-    <div class="form-group col-md-3">
-      <label for="time">{% trans "Time" %}</label>
-      <input type="time" class="form-control" name="time">
-    </div>
-    <div class="form-group col-md-2" style="margin-top:32px">
-      <button class="btn btn-primary" type="submit">{% trans "Search" %}</button>
-    </div>
+  <!-- En Yakın Ofisleri Bulma Butonu -->
+  <div class="text-center">
+    <button class="btn btn-info" onclick="getLocation()">
+      {% trans "Find Nearest Offices (within 30km)" %}
+    </button>
   </div>
-</form>
 
-<!-- Konum alma butonu (tarayıcı geolocation) -->
-<button class="btn btn-info" onclick="getLocation()">
-  {% trans "Find Nearest Offices (within 30km)" %}
-</button>
-
-<script>
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((pos)=>{
-      let lat = pos.coords.latitude;
-      let lng = pos.coords.longitude;
-      window.location.href = `/nearest-offices/?lat=${lat}&lng=${lng}`;
-    });
-  } else {
-    alert("{% trans 'Geolocation is not supported by this browser.' %}");
-  }
-}
-</script>
-
+  <script>
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            let lat = pos.coords.latitude;
+            let lng = pos.coords.longitude;
+            window.location.href = `/nearest-offices/?lat=${lat}&lng=${lng}`;
+          },
+          (error) => {
+            alert("{% trans 'Geolocation error. Please enable location services.' %}");
+          }
+        );
+      } else {
+        alert("{% trans 'Geolocation is not supported by this browser.' %}");
+      }
+    }
+  </script>
+</div>
 {% endblock %}

@@ -1,63 +1,75 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}Vehicles{% endblock %}
+{% block title %}{% trans "Vehicles" %}{% endblock %}
 
 {% block body %}
 {% include 'messages.html' %}
 
-<h2>{% trans "Vehicles" %}</h2>
+<div class="container mt-4">
+  <h2 class="mb-4">{% trans "Vehicles" %}</h2>
 
-<!-- Filtreleme Formu -->
-<form method="GET" class="form-inline mb-3">
-  <label class="mr-2">{% trans "Make" %}:</label>
-  <input type="text" name="make" class="form-control mr-2" value="{{ request.GET.make }}">
-  
-  <label class="mr-2">{% trans "Transmission" %}:</label>
-  <select name="transmission" class="form-control mr-2">
-    <option value="">{% trans "All" %}</option>
-    <option value="Automatic" {% if request.GET.transmission == "Automatic" %}selected{% endif %}>
-      Automatic
-    </option>
-    <option value="Manual" {% if request.GET.transmission == "Manual" %}selected{% endif %}>
-      Manual
-    </option>
-  </select>
+  <!-- **Filtreleme Formu** -->
+  <form method="GET" class="form-inline mb-4">
+    <div class="form-group mr-2">
+      <label for="make">{% trans "Make" %}:</label>
+      <input type="text" name="make" class="form-control ml-2" value="{{ request.GET.make }}">
+    </div>
 
-  <label class="mr-2">{% trans "Order by Price" %}:</label>
-  <select name="order_by_price" class="form-control mr-2">
-    <option value="">{% trans "None" %}</option>
-    <option value="asc" {% if request.GET.order_by_price == "asc" %}selected{% endif %}>
-      {% trans "Ascending" %}
-    </option>
-    <option value="desc" {% if request.GET.order_by_price == "desc" %}selected{% endif %}>
-      {% trans "Descending" %}
-    </option>
-  </select>
-  
-  <button class="btn btn-primary" type="submit">{% trans "Filter" %}</button>
-</form>
+    <div class="form-group mx-2">
+      <label for="transmission">{% trans "Transmission" %}:</label>
+      <select name="transmission" class="form-control ml-2">
+        <option value="">{% trans "All" %}</option>
+        <option value="Automatic" {% if request.GET.transmission == "Automatic" %}selected{% endif %}>
+          {% trans "Automatic" %}
+        </option>
+        <option value="Manual" {% if request.GET.transmission == "Manual" %}selected{% endif %}>
+          {% trans "Manual" %}
+        </option>
+      </select>
+    </div>
 
-<div class="row">
-  {% for c in cars %}
-  <div class="col-md-4">
-    <div class="card mb-3">
-      <img src="{{ c.image.url }}" class="card-img-top" alt="{{ c.car_name }}" 
-           style="height:200px; object-fit:cover;">
-      <div class="card-body">
-        <h5 class="card-title">{{ c.car_name }}</h5>
-        <p class="card-text">{{ c.car_desc }}</p>
-        <ul>
-          <li><strong>{% trans "Transmission" %}:</strong> {{ c.transmission }}</li>
-          <li><strong>{% trans "Deposit" %}:</strong> {{ c.deposit }}</li>
-          <li><strong>{% trans "Mileage" %}:</strong> {{ c.mileage }}</li>
-          <li><strong>{% trans "Age" %}:</strong> {{ c.age }}</li>
-          <li><strong>{% trans "Cost/Day" %}:</strong> {{ c.cost_per_day }}</li>
-        </ul>
-        <a href="{% url 'bill' %}" class="btn btn-dark">{% trans "Rent" %}</a>
+    <div class="form-group mx-2">
+      <label for="order_by_price">{% trans "Order by Price" %}:</label>
+      <select name="order_by_price" class="form-control ml-2">
+        <option value="">{% trans "None" %}</option>
+        <option value="asc" {% if request.GET.order_by_price == "asc" %}selected{% endif %}>
+          {% trans "Ascending" %}
+        </option>
+        <option value="desc" {% if request.GET.order_by_price == "desc" %}selected{% endif %}>
+          {% trans "Descending" %}
+        </option>
+      </select>
+    </div>
+
+    <button class="btn btn-primary ml-2" type="submit">{% trans "Filter" %}</button>
+  </form>
+
+  <!-- **Araç Listesi** -->
+  <div class="row">
+    {% for c in cars %}
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <img src="{{ c.image.url }}" class="card-img-top" alt="{{ c.car_name }}" style="height:200px; object-fit:cover;">
+        <div class="card-body">
+          <h5 class="card-title">{{ c.car_name }}</h5>
+          <p class="card-text">{{ c.car_desc }}</p>
+          <ul class="list-unstyled">
+            <li><strong>{% trans "Transmission" %}:</strong> {{ c.transmission }}</li>
+            <li><strong>{% trans "Deposit" %}:</strong> {{ c.deposit }}</li>
+            <li><strong>{% trans "Mileage" %}:</strong> {{ c.mileage }}</li>
+            <li><strong>{% trans "Age" %}:</strong> {{ c.age }}</li>
+            <li><strong>{% trans "Cost/Day" %}:</strong> {{ c.cost_per_day }}</li>
+          </ul>
+          <a href="{% url 'bill' %}" class="btn btn-dark btn-block">{% trans "Rent" %}</a>
+        </div>
       </div>
     </div>
+    {% empty %}
+      <div class="col-12">
+        <div class="alert alert-warning text-center">{% trans "No vehicles available." %}</div>
+      </div>
+    {% endfor %}
   </div>
-  {% endfor %}
 </div>
 
 {% endblock %}

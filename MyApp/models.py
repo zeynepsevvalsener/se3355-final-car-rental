@@ -1,20 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
 class Car(models.Model):
-    car_id = models.AutoField(primary_key=True)
-    car_name = models.CharField(max_length=100, default="")
-    car_desc = models.TextField(default="", blank=True)
-    transmission = models.CharField(max_length=20, default="Manual")  # Manual/Automatic
-    deposit = models.IntegerField(default=0)
-    mileage = models.IntegerField(default=0)  # km ya da mil
-    age = models.IntegerField(default=0)      # araç yaşı/model yılı
-    cost_per_day = models.IntegerField(default=0)
-    image = models.ImageField(upload_to="car/images", default="")
+    car_name = models.CharField(max_length=100)
+    car_desc = models.TextField()
+    image = models.ImageField(upload_to='cars/')
+    transmission = models.CharField(max_length=20, choices=[('Automatic', 'Automatic'), ('Manual', 'Manual')])
+    deposit = models.DecimalField(max_digits=10, decimal_places=2)
+    mileage = models.PositiveIntegerField()
+    age = models.PositiveIntegerField()
+    cost_per_day = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return f"{self.car_name} - {self.transmission}"
+        return self.car_name
 
 class Office(models.Model):
     name = models.CharField(max_length=100)

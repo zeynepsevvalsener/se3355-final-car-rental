@@ -1,28 +1,40 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}Register{% endblock %}
+{% block title %}{% trans "Register" %}{% endblock %}
 
 {% block body %}
 {% include 'messages.html' %}
 
-<h2>{% trans "Register" %}</h2>
-<form method="POST" enctype="multipart/form-data">
+<h2 class="mb-4">{% trans "Register" %}</h2>
+
+<form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
   {% csrf_token %}
-  {{ form.non_field_errors }}
   
+  <!-- Form Hataları -->
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger">
+      {% for error in form.non_field_errors %}
+        {{ error }}
+      {% endfor %}
+    </div>
+  {% endif %}
+
   <div class="form-group">
     <label for="id_username">{% trans "Username" %}</label>
     {{ form.username }}
+    <small class="form-text text-muted">{% trans "Choose a unique username." %}</small>
   </div>
-  
+
   <div class="form-group">
     <label for="id_email">{% trans "Email" %}</label>
     {{ form.email }}
+    <small class="form-text text-muted">{% trans "We’ll never share your email with anyone else." %}</small>
   </div>
 
   <div class="form-group">
     <label for="id_password">{% trans "Password" %}</label>
     {{ form.password }}
+    <small class="form-text text-muted">{% trans "Must be at least 8 characters." %}</small>
   </div>
 
   <div class="form-group">
@@ -45,6 +57,6 @@
     {{ form.photo }}
   </div>
 
-  <button type="submit" class="btn btn-primary">{% trans "Sign Up" %}</button>
+  <button type="submit" class="btn btn-primary btn-block">{% trans "Sign Up" %}</button>
 </form>
 {% endblock %}
