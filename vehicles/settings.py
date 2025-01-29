@@ -5,7 +5,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-CHANGE_THIS_TO_YOUR_OWN_SECRET_KEY'
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://se3355-final-car-rental.onrender.com']
+
 
 
 USE_L10N = True
