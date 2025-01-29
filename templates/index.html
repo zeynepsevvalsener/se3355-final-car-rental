@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}Home{% endblock %}
+
+{% block body %}
+{% include 'messages.html' %}
+
+<h1 class="mb-3">{% trans "Welcome to CarZest" %}</h1>
+
+<p>{% trans "Rent cars easily with our system!" %}</p>
+
+<!-- Örnek arama formu (office/date/time) -->
+<form action="{% url 'search' %}" method="POST" class="mb-3">
+  {% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="office">{% trans "Office" %}</label>
+      <input type="text" class="form-control" name="office" placeholder="{% trans 'Enter office name' %}">
+    </div>
+    <div class="form-group col-md-3">
+      <label for="date">{% trans "Date" %}</label>
+      <input type="date" class="form-control" name="date">
+    </div>
+    <div class="form-group col-md-3">
+      <label for="time">{% trans "Time" %}</label>
+      <input type="time" class="form-control" name="time">
+    </div>
+    <div class="form-group col-md-2" style="margin-top:32px">
+      <button class="btn btn-primary" type="submit">{% trans "Search" %}</button>
+    </div>
+  </div>
+</form>
+
+<!-- Konum alma butonu (tarayıcı geolocation) -->
+<button class="btn btn-info" onclick="getLocation()">
+  {% trans "Find Nearest Offices (within 30km)" %}
+</button>
+
+<script>
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((pos)=>{
+      let lat = pos.coords.latitude;
+      let lng = pos.coords.longitude;
+      window.location.href = `/nearest-offices/?lat=${lat}&lng=${lng}`;
+    });
+  } else {
+    alert("{% trans 'Geolocation is not supported by this browser.' %}");
+  }
+}
+</script>
+
+{% endblock %}

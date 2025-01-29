@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+{% include 'messages.html' %}
+
+<h2>{% trans "Contact Us" %}</h2>
+<form method="POST">
+  {% csrf_token %}
+  <div class="form-group">
+    <label>{% trans "Name" %}</label>
+    <input type="text" class="form-control" name="contactname" required>
+  </div>
+  <div class="form-group">
+    <label>{% trans "Phone Number" %}</label>
+    <input type="tel" class="form-control" name="contactnumber" required>
+  </div>
+  <div class="form-group">
+    <label>{% trans "Email" %}</label>
+    <input type="email" class="form-control" name="contactemail" required>
+  </div>
+  <div class="form-group">
+    <label>{% trans "Message" %}</label>
+    <textarea class="form-control" name="contactmsg" rows="4" required></textarea>
+  </div>
+  <button type="submit" class="btn btn-info">{% trans "Send" %}</button>
+</form>
+
+{% endblock %}

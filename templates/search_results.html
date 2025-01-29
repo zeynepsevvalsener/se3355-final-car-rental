@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}Search Results{% endblock %}
+
+{% block body %}
+<h3>{% trans "Search Results" %}</h3>
+
+{% if offices %}
+  <ul>
+    {% for o in offices %}
+      <li>{{ o.name }} - {{ o.city }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>{% trans "No office found." %}</p>
+{% endif %}
+
+<!-- Eğer nearest_offices fonksiyonundan distances geliyorsa gösterebiliriz -->
+{% if distances %}
+  <h5>{% trans "Distances (km):" %}</h5>
+  <ul>
+    {% for d in distances %}
+      <li>{{ d|floatformat:2 }} km</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+{% endblock %}
