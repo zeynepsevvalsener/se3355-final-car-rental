@@ -139,14 +139,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-        'SCOPE': [
-            'email',
-            'profile',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        },
-        # 'client_id': 'YOUR_GOOGLE_CLIENT_ID',
-        # 'secret': 'YOUR_GOOGLE_CLIENT_SECRET',
+        'SCOPE': ['profile', 'email'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+        'CLIENT_ID': '446528386628-24ahh9puvsfod7nu5f8vqp1kabfh2q65.apps.googleusercontent.com',
+        'SECRET': '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',
     }
 }
+
