@@ -43,16 +43,15 @@ AUTHENTICATION_BACKENDS = (
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
-
-    # Dil seçimi için
     'django.middleware.locale.LocaleMiddleware',
-
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'allauth.account.middleware.AccountMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'vehicles.urls'
@@ -104,11 +103,17 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Dil Ayarları
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'tr'
 LANGUAGES = [
     ('en', 'English'),
     ('tr', 'Türkçe'),
 ]
+# i18n çeviri dosyaları
+LOCALE_PATHS = [
+     BASE_DIR / 'locale', 
+]
+
+
 USE_I18N = True
 
 TIME_ZONE = 'UTC'
@@ -116,10 +121,7 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# i18n çeviri dosyaları
-LOCALE_PATHS = [
-     BASE_DIR / 'locale', 
-]
+
 
 # Static ve Media
 STATIC_URL = '/static/'
