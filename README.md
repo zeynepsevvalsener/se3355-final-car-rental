@@ -73,6 +73,9 @@ Django also provides secure password handling, verifying user credentials by has
 - **Git & GitHub** - Version control and collaboration.
 - **VS Code / PyCharm** - IDEs for coding and debugging.
 
+### Project Video Link
+- https://youtu.be/GZS0d5rnKV4
+
 ---
 
 ## ⚙️ Installation & Setup  
