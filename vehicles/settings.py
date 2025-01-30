@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -137,12 +138,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # django-allauth Google ayarları (örnek)
 # (Kendi Client ID ve Secret'ınızı ekleyin)
 #
+
+
+# .env dosyasını yükle
+load_dotenv()
+
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-        'SCOPE': ['profile', 'email'],
+        'SCOPE': ['email', 'profile'],
         'AUTH_PARAMS': {'access_type': 'online'},
-        'CLIENT_ID': '446528386628-24ahh9puvsfod7nu5f8vqp1kabfh2q65.apps.googleusercontent.com',
-        'SECRET': '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',
+        'APP': {
+            'client_id': os.getenv('446528386628-24ahh9puvsfod7nu5f8vqp1kabfh2q65.apps.googleusercontent.com'),
+            'secret': os.getenv('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'),
+            'key': ''
+        }
     }
 }
 
