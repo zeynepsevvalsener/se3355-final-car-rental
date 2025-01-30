@@ -7,14 +7,19 @@
 The goal of this project is to digitize the **car rental process**, making it more efficient and user-friendly.
 
 ---
-se3355-final-car-rental/
-│── /vehicles               # Ana Django Uygulaması
-│── /MyApp                  # İş mantığı ve modeller
-│── /static                 # CSS, JS ve medya dosyaları
-│── /templates              # HTML şablonları
-│── .env                    # Gizli anahtarlar (Git'e eklenmez)
-│── manage.py               # Django Yönetim Komutları
-│── README.md               # Dokümantasyon
+
+### 📌 **Key Directories & Files Explained**  
+- **`/vehicles`** - The main Django project directory containing project-level settings and configurations.  
+- **`/MyApp`** - The core application where business logic, models, views, and API handlers are defined.  
+- **`/templates`** - Houses all **Django HTML templates**, used for rendering frontend pages.  
+- **`/static`** - Stores CSS, JavaScript, and images for styling and interactive elements.  
+- **`/media`** - Used to store uploaded user files (e.g., profile pictures, car images).  
+- **`/migrations`** - Database schema migrations to track model changes.  
+- **`manage.py`** - A command-line utility for running and managing the Django project.  
+
+---
+
+This **structured approach** ensures **scalability, modularity, and maintainability**, making the project easy to navigate and extend in the future. 🚀
 
 ---
 
