@@ -2,14 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Car(models.Model):
-    car_name = models.CharField(max_length=100)
+    car_name = models.CharField(max_length=150)
     car_desc = models.TextField()
-    image = models.ImageField(upload_to='cars/')
-    transmission = models.CharField(max_length=20, choices=[('Automatic', 'Automatic'), ('Manual', 'Manual')], null=True, blank=True)
-    deposit = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    mileage = models.PositiveIntegerField(default=0)
-    age = models.PositiveIntegerField(default=5)
-    cost_per_day = models.DecimalField(max_digits=10, decimal_places=2, default=100)
+    transmission = models.CharField(max_length=50)  # Add this field if not present
+    deposit = models.DecimalField(max_digits=10, decimal_places=2)
+    mileage = models.IntegerField()
+    age = models.IntegerField()
+    cost_per_day = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
         return self.car_name
