@@ -40,7 +40,7 @@ class Order(models.Model):
         return f"Order #{self.order_id} - {self.name}"
 
 class Contact(models.Model):
-    message_id = models.AutoField(primary_key=True)
+    
     name = models.CharField(max_length=150, default="")
     email = models.CharField(max_length=150, default="")
     phone_number = models.CharField(max_length=15, default="")
