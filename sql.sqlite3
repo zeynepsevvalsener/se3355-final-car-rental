@@ -1,0 +1,11 @@
+-- Insert sample car data into the MyApp_car table
+INSERT INTO MyApp_car (car_name, car_desc, transmission, deposit, mileage, age, image, cost_per_day) VALUES
+('Alto', 'Compact and fuel-efficient car.', 'Manual', 1000, 50000, 3, 'alto.jpg', 50.00),
+('BMW', 'Luxury car with advanced features.', 'Automatic', 5000, 30000, 2, 'bmw.jpg', 150.00),
+('Honda', 'Reliable and affordable sedan.', 'Manual', 2000, 60000, 4, 'honda.jpg', 70.00),
+('Kia', 'Stylish and comfortable SUV.', 'Automatic', 2500, 40000, 3, 'kia.jpg', 90.00),
+('Mercedes', 'Premium luxury vehicle.', 'Automatic', 7000, 20000, 1, 'mercedes.jpg', 200.00),
+('Renault', 'Economical and spacious car.', 'Manual', 1500, 80000, 5, 'renault.jpg', 60.00),
+('Swift', 'Sporty and compact hatchback.', 'Manual', 1200, 45000, 3, 'swift.jpg', 55.00),
+('Taversa', 'Family-friendly minivan.', 'Automatic', 3000, 70000, 6, 'taversa.jpg', 100.00),
+('Innova', 'Spacious and versatile MPV.', 'Automatic', 3500, 65000, 5, 'innova.jpg', 110.00);
