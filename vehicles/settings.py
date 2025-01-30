@@ -2,12 +2,14 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-CHANGE_THIS_TO_YOUR_OWN_SECRET_KEY'
 DEBUG = True
 ALLOWED_HOSTS = ['se3355-final-car-rental.onrender.com','127.0.0.1']
 
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-CHANGE_THIS_TO_YOUR_OWN_SECRET_KEY')
 
 
 USE_L10N = True
