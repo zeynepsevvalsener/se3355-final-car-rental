@@ -2,8 +2,23 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-
+# BASE_DIR tanımlandıktan sonra .env yüklenmeli
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(dotenv_path=os.path.join(BASE_DIR, '.env'))
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': ['email', 'profile'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+        'APP': {
+            'client_id': os.getenv('GOOGLE_CLIENT_ID'),
+            'secret': os.getenv('GOOGLE_CLIENT_SECRET'),
+            'key': ''
+        }
+    }
+}
+
+
 
 SECRET_KEY = 'django-insecure-CHANGE_THIS_TO_YOUR_OWN_SECRET_KEY'
 DEBUG = True
@@ -140,20 +155,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # django-allauth Google ayarları (örnek)
 # (Kendi Client ID ve Secret'ınızı ekleyin)
 #
-
-
-# .env dosyasını yükle
-load_dotenv()
-
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': ['email', 'profile'],
-        'AUTH_PARAMS': {'access_type': 'online'},
-        'APP': {
-            'client_id': os.getenv('446528386628-24ahh9puvsfod7nu5f8vqp1kabfh2q65.apps.googleusercontent.com'),
-            'secret': os.getenv('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'),
-            'key': ''
-        }
-    }
-}
 
