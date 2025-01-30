@@ -7,6 +7,6 @@ admin.site.register(Order)
 admin.site.register(Contact)
 admin.site.register(UserProfile)
 
-admin.site.site_header = "CarZest Admin"
-admin.site.site_title = "CarZest Admin Portal"
-admin.site.index_title = "Welcome to CarZest Admin Portal"
+admin.site.site_header = "Car Rental Admin"
+admin.site.site_title = "Car Rental Admin Portal"
+admin.site.index_title = "Welcome to Car Rental Admin Portal"

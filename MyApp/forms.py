@@ -22,7 +22,7 @@ class RegisterForm(forms.ModelForm):
         if p1 != p2:
             raise ValidationError("Passwords do not match.")
 
-        # Ek regex kontrolü: en az 8 karakter, 1 rakam, 1 özel karakter
+    
         pattern = r'^(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$'
         if not re.match(pattern, p1):
             raise ValidationError("Password must be >=8 chars, 1 digit & 1 special char.")

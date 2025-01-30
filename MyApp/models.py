@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 class Car(models.Model):
     car_name = models.CharField(max_length=150)
     car_desc = models.TextField()
-    transmission = models.CharField(max_length=50)  # Add this field if not present
+    transmission = models.CharField(max_length=50)  
     deposit = models.DecimalField(max_digits=10, decimal_places=2)
     mileage = models.IntegerField()
     age = models.IntegerField()
@@ -22,7 +22,7 @@ class Office(models.Model):
 
     def __str__(self):
         return self.name
-        
+
 class Order(models.Model):
     order_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=90, default="")
@@ -53,7 +53,7 @@ class Contact(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    additional_field = models.CharField(max_length=255, blank=True, null=True)  # Örnek bir alan
+    additional_field = models.CharField(max_length=255, blank=True, null=True)  
 
     def __str__(self):
         return self.user.username

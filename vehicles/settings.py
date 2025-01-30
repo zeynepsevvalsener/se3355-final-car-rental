@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-# BASE_DIR tanımlandıktan sonra .env yüklenmeli
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(dotenv_path=os.path.join(BASE_DIR, '.env'))
 
@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
 
-    # Uygulamamız
+
     'MyApp.apps.MyAppConfig',
 ]
 
@@ -82,7 +82,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',  # allauth için kritik
+                'django.template.context_processors.request',  
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',
@@ -93,7 +93,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'vehicles.wsgi.application'
 
-# Veritabanı (varsayılan SQLite)
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -101,7 +101,7 @@ DATABASES = {
     }
 }
 
-# Parola Validasyonu (Django'nun default'u + min length vs.)
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -120,13 +120,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Dil Ayarları
+
 LANGUAGE_CODE = 'tr'
 LANGUAGES = [
     ('en', 'English'),
     ('tr', 'Türkçe'),
 ]
-# i18n çeviri dosyaları
+
 LOCALE_PATHS = [
      BASE_DIR / 'locale', 
 ]
@@ -141,7 +141,7 @@ USE_TZ = True
 
 
 
-# Static ve Media
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
@@ -151,8 +151,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#
-# django-allauth Google ayarları (örnek)
-# (Kendi Client ID ve Secret'ınızı ekleyin)
-#
 

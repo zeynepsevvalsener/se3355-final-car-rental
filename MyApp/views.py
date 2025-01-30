@@ -24,8 +24,8 @@ def register(request):
             user.set_password(password)
             user.save()
 
-            # UserProfile güncelle
-            profile = user.userprofile  # create_user_profile sinyali ile oluşmuş olmalı
+            
+            profile = user.userprofile 
             profile.country = form.cleaned_data['country']
             profile.city = form.cleaned_data['city']
             if request.FILES.get('photo'):
@@ -65,7 +65,7 @@ def signout(request):
 def vehicles(request):
     cars = Car.objects.all()
 
-    # Filtreleme parametreleri
+   
     make = request.GET.get('make', '')
     transmission = request.GET.get('transmission', '')
     order_by_price = request.GET.get('order_by_price', '')
@@ -83,7 +83,7 @@ def vehicles(request):
     return render(request, 'vehicles.html', context)
 
 def bill(request):
-    # Araç listesini form seçimi için gönderiyoruz
+    
     cars = Car.objects.all()
     return render(request, 'bill.html', {'cars': cars})
 
@@ -164,7 +164,7 @@ def search(request):
             if office_name:
                 offices = offices.filter(name__icontains=office_name)
 
-            # Tarih ve saate göre ek mantık (örneğin müsaitlik) eklenebilir
+            
             return render(request, 'search_results.html', {
                 'offices': offices,
                 'search_date': date_val,
@@ -179,7 +179,7 @@ def haversine_distance(lat1, lon1, lat2, lon2):
     """
     2 koordinat arası km cinsinden mesafe
     """
-    R = 6371  # Earth's radius (km)
+    R = 6371  
     phi1 = math.radians(lat1)
     phi2 = math.radians(lat2)
     dphi = math.radians(lat2 - lat1)
@@ -207,7 +207,7 @@ def nearest_offices(request):
         if dist <= max_distance_km:
             nearby.append((off, dist))
 
-    # Mesafeye göre sırala
+   
     nearby_sorted = sorted(nearby, key=lambda x: x[1])
 
     return render(request, 'search_results.html', {

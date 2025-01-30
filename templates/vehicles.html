@@ -7,7 +7,7 @@
 
 <h2>{% trans "Vehicles" %}</h2>
 
-<!-- Filtreleme Formu -->
+
 <form method="GET" class="form-inline mb-3">
   <label class="mr-2">{% trans "Make" %}:</label>
   <input type="text" name="make" class="form-control mr-2" value="{{ request.GET.make }}">
@@ -42,7 +42,7 @@
     {% for c in cars %}
     <div class="col-md-4">
       <div class="card mb-4 shadow-sm">
-        <!-- Görüntüleme için uygun img etiketi -->
+        
         <img src="{{ c.image.url }}" alt="{{ c.car_name }}" class="card-img-top" style="height:200px; object-fit:cover;">
         <div class="card-body">
           <h5 class="card-title">{{ c.car_name }}</h5>
@@ -60,7 +60,7 @@
     </div>
     {% endfor %}
   {% else %}
-    <!-- Araç bulunamazsa -->
+    
     <div class="col-12">
       <div class="alert alert-warning text-center">
         {% trans "No vehicles available." %}

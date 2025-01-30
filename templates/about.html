@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% load i18n %}  <!-- Add this line -->
+{% load i18n %}  
 
 {% block title %}{% trans "About Us" %}{% endblock title %}
 
@@ -23,7 +23,7 @@
             <h1 class="my-3 text-center">{% trans "Why Choose Us?" %}</h1>
         </div>
 
-        <!-- Safe Section -->
+
         <div class="col-xl-4 text-center">
             <img src="{% static 'trust.jpg' %}" alt="{% trans 'Safe' %}" width="300" height="300" class="rounded shadow" style="margin: 0 auto;">
             <h2 class="hd my-2">{% trans "Safe" %}</h2>
@@ -32,7 +32,7 @@
             </p>
         </div>
 
-        <!-- Affordable Prices Section -->
+        
         <div class="col-xl-4 text-center">
             <img src="{% static 'affordable.jpg' %}" alt="{% trans 'Affordable Prices' %}" width="300" height="300" class="rounded shadow" style="margin: 0 auto;">
             <h2 class="hd my-2">{% trans "Affordable Prices" %}</h2>
@@ -41,7 +41,7 @@
             </p>
         </div>
 
-        <!-- Hygienic Section -->
+        
         <div class="col-xl-4 text-center">
             <img src="{% static 'car-wash.png' %}" alt="{% trans 'Hygienic' %}" width="300" height="300" class="rounded shadow" style="margin: 0 auto;">
             <h2 class="hd my-2">{% trans "Hygienic" %}</h2>
