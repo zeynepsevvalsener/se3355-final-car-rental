@@ -8,6 +8,7 @@ class Car(models.Model):
     deposit = models.DecimalField(max_digits=10, decimal_places=2)
     mileage = models.IntegerField()
     age = models.IntegerField()
+    image = models.ImageField(upload_to='car/images/')
     cost_per_day = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
