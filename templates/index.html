@@ -9,7 +9,7 @@
   <h1 class="text-center mb-3">{% trans "Welcome to CarZest" %}</h1>
   <p class="text-center">{% trans "Rent cars easily with our system!" %}</p>
 
-  <!-- Arama Formu -->
+  <!-- Search Form -->
   <form action="{% url 'search' %}" method="POST" class="mb-4">
     {% csrf_token %}
     <div class="form-row">
@@ -31,14 +31,18 @@
     </div>
   </form>
 
-  <!-- En Yakın Ofisleri Bulma Butonu -->
-  <div class="text-center">
+  <!-- Find Nearest Offices -->
+  <div class="text-center mb-4">
     <button class="btn btn-info" onclick="getLocation()">
       {% trans "Find Nearest Offices (within 30km)" %}
     </button>
   </div>
 
+  <!-- Google Map -->
+  <div id="map" class="mb-4" style="height: 500px; width: 100%;"></div>
+
   <script>
+    // Geolocation and Redirect
     function getLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -55,6 +59,31 @@
         alert("{% trans 'Geolocation is not supported by this browser.' %}");
       }
     }
+
+    // Initialize Google Maps
+    function initMap() {
+      const mapOptions = {
+        zoom: 10,
+        center: { lat: 38.4192, lng: 27.1287 }, // Coordinates for Izmir
+      };
+
+      // Map Initialization
+      const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+      // Add a Sample Marker
+      const marker = new google.maps.Marker({
+        position: { lat: 38.4192, lng: 27.1287 },
+        map: map,
+        title: "{% trans 'Izmir Office' %}",
+      });
+    }
+  </script>
+
+  <!-- Google Maps Script -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAms98f4LARvHD1H6ZOmLAZrKkpHsvgsyQ&callback=initMap"
+    async
+    defer>
   </script>
 </div>
 {% endblock %}

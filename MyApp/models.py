@@ -15,13 +15,14 @@ class Car(models.Model):
         return self.car_name
 
 class Office(models.Model):
-    name = models.CharField(max_length=100)
-    city = models.CharField(max_length=100, default="")
+    name = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
     latitude = models.FloatField()
     longitude = models.FloatField()
 
     def __str__(self):
-            return f"{self.name} - {self.city}"
+        return self.name
+        
 class Order(models.Model):
     order_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=90, default="")
